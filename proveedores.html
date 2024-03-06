@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proveedores</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+	<div class="w3-row">
+	  <div class="w3-col m5 l4">
+		<div class="w3-container w3-padding">
+			<div class="w3-container w3-green">
+			  <h2>Proveedor</h2>
+			</div>
+			<form id="frmProveedor" class="w3-container">
+			  <p>
+			  <label>RFC Proveedor</label>
+			  <input name="RFCproveedor" class="w3-input" type="text" required></p>
+			  <p>
+			  <label>Nombre proveedor</label>
+			  <input name="NombreProv" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Teléfono proveedor</label>
+			  <input name="TelProv" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Correo Electrónico</label>
+			  <input name="MailProv" class="w3-input" type="text"></p>
+			  <p>
+				<input type="submit" id="btnEnviar" value="enviar">
+			  </p>
+			</form>
+		</div>
+	  </div>
+	  <div class="w3-col m7 l8">
+		<div class="w3-row w3-padding">
+			<div class="w3-bar w3-blue">
+			<a href="index.html" class="w3-bar-item w3-button">Inicio</a>
+			<a href="calzado.html" class="w3-bar-item w3-button">Calzado</a>
+			<a href="pedidos.html" class="w3-bar-item w3-button">Pedidos</a>
+			<a href="proveedores.html" class="w3-bar-item w3-button">Proveedores</a>
+		</div>
+		<div class="w3-row">
+			<div class="w3-container">
+			  <h2>Tabla</h2>
+			  <table class="w3-table w3-striped w3-bordered">
+				<thead>
+					<tr>
+					  <th>RFC</th>
+					  <th>Nombre</th>
+					  <th>Telefono</th>
+					  <th>Direccion</th>
+					  <th>Correo</th>
+					</tr>
+				</thead>
+				<tbody id="tablaDatos">
+
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		
+	</div>
+	  </div>
+	</div>
+	
+
+</body>
+<script>
+	let todos=[
+		{
+			"RFC": "LOGJ580812RH7",
+			"Nombre": "Proveedora CalzadosMex S.A. de C.V.",
+			"Telefono": "(33)3853 9369",
+			"Direccion": "BLV BENITO JUAREZ 100, FICT LOCALITY , FICTICIO , MEX , C.P.22700",
+			"Correo": "calzadosmex@gmail.com"
+		},
+		{
+			"RFC": "PAM130316E60",
+			"Nombre": "Proveedora Calzado Mexicana S.A. de C.V.",
+			"Telefono": "(661) 612 4597",
+			"Direccion": "CLL MAGISTERIO S/N, FICT LOCALITY , FICTICIO , MEX , C.P.44270",
+			"Correo": "calzadomexicana@gmail.com"
+		}
+	]
+	function traeDatosTabla(){
+		return todos;
+	}
+	function cargaTabla(){
+		const tbody=document.querySelector("#tablaDatos")
+		let s=''
+		const datos=traeDatosTabla()
+		datos.forEach((value)=>{
+			s+=`<tr>
+					<td>${value.RFC}</td>
+					<td>${value.Nombre}</td>
+					<td>${value.Telefono}</td>
+					<td>${value.Direccion}</td>
+					<td>${value.Correo}</td>
+				</tr>
+				`
+		})
+		tbody.innerHTML=s
+	}
+	window.onload=function(){
+		cargaTabla()
+
+		let btn=document.querySelector("#btnEnviar")
+		btn.addEventListener('click',function(e){
+			e.preventDefault
+			frm=document.querySelector("#frmPersona")
+			const formData=new FormData(frm)
+			console.log("for of")
+			console.log("for of")
+			let out2=""
+			for (let entry of formData) {
+				console.log(entry);
+			}
+			console.log("For in")
+			for (let i in formData) {
+				console.log(i); // logs "0", "1", "2", "foo"
+			}
+			console.log("for each")
+			formData.forEach((v,i)=>{
+				console.log(v)
+			})
+			//
+			formData.append("username", "Chris");
+			
+			//json
+			const dj=Object.fromEntries(formData)
+			console.log("json:",JSON.stringify(dj))
+			let output=""
+			for (const [key, value] of formData) {
+				output += `${key}: ${value}\n`;
+			}
+			console.log("form data:",output)
+		})
+	}
+</script>
+</html>

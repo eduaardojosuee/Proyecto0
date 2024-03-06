@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pedidos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+	<div class="w3-row">
+	  <div class="w3-col m5 l4">
+		<div class="w3-container w3-padding">
+			<div class="w3-container w3-green">
+			  <h2>Pedidos de calzado</h2>
+			</div>
+			<form id="frmPedido" class="w3-container">
+			  <p>
+			  <label>ID Pedido</label>
+			  <input name="IDpedido" class="w3-input" type="text" required></p>
+			  <p>
+			  <label>Fecha de pedido</label>
+			  <input name="FechaPed" class="w3-input" type="text"></p>
+			  <p>
+			  <label>ID Calzado</label>
+			  <input name="IDcalzado" class="w3-input" type="text"></p>
+			  <p>
+			  <label>RFC Proveedor</label>
+			  <input name="RFCproveedor" class="w3-input" type="text"></p>
+			  <p>
+		  	  <label>Cantidad Solicitada</label>
+			  <input name="CantidadSoli" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Fecha de surtido</label>
+			  <input name="FechaSurt" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Costo de pedido</label>
+			  <input name="CostoPed" class="w3-input" type="text"></p>
+			  <p>
+				<input type="submit" id="btnEnviar" value="enviar">
+			  </p>
+			</form>
+		</div>
+	  </div>
+	  <div class="w3-col m7 l8">
+		<div class="w3-row w3-padding">
+			<div class="w3-bar w3-blue">
+			<a href="index.html" class="w3-bar-item w3-button">Inicio</a>
+			<a href="calzado.html" class="w3-bar-item w3-button">Calzado</a>
+			<a href="pedidos.html" class="w3-bar-item w3-button">Pedidos</a>
+			<a href="proveedores.html" class="w3-bar-item w3-button">Proveedores</a>
+		</div>
+		<div class="w3-row">
+			<div class="w3-container">
+			  <h2>Tabla con bordes</h2>
+			  <table class="w3-table w3-striped w3-bordered">
+				<thead>
+					<tr>
+					  <th>ID Pedido</th>
+					  <th>Fecha de pedido</th>
+					  <th>ID Calzado</th>
+					  <th>RFC Proveedor</th>
+					  <th>Cantidad solicitada</th>
+					  <th>Fecha de surtido</th>
+					  <th>Costo de pedido</th>
+					</tr>
+				</thead>
+				<tbody id="tablaDatos">
+
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		
+	</div>
+	  </div>
+	</div>
+	
+
+</body>
+<script>
+	let todos=[
+		{
+			"IDpedido": 1,
+			"Fecha": "03/02/2024",
+			"IDcalzado": 1,
+			"RFC": "LOGJ580812RH7",
+			"CantidadSoli": 4,
+			"FechaSurt": "23/02/2024",
+			"CostoPed": "$2250"
+		},
+		{
+			"IDpedido": 2,
+			"Fecha": "04/02/2024",
+			"IDcalzado": 2,
+			"RFC": "PAM130316E60",
+			"CantidadSoli": 3,
+			"FechaSurt": "27/02/2024",
+			"CostoPed": "$3600"
+		}
+	]
+	function traeDatosTabla(){
+		return todos;
+	}
+	function cargaTabla(){
+		const tbody=document.querySelector("#tablaDatos")
+		let s=''
+		const datos=traeDatosTabla()
+		datos.forEach((value)=>{
+			s+=`<tr>
+					<td>${value.IDpedido}</td>
+					<td>${value.Fecha}</td>
+					<td>${value.IDcalzado}</td>
+					<td>${value.RFC}</td>
+					<td>${value.CantidadSoli}</td>
+					<td>${value.FechaSurt}</td>
+					<td>${value.CostoPed}</td>
+				</tr>
+				`
+		})
+		tbody.innerHTML=s
+	}
+	window.onload=function(){
+		cargaTabla()
+
+		let btn=document.querySelector("#btnEnviar")
+		btn.addEventListener('click',function(e){
+			e.preventDefault
+			frm=document.querySelector("#frmPersona")
+			const formData=new FormData(frm)
+			console.log("for of")
+			console.log("for of")
+			let out2=""
+			for (let entry of formData) {
+				console.log(entry);
+			}
+			console.log("For in")
+			for (let i in formData) {
+				console.log(i); // logs "0", "1", "2", "foo"
+			}
+			console.log("for each")
+			formData.forEach((v,i)=>{
+				console.log(v)
+			})
+			//
+			formData.append("username", "Chris");
+			
+			//json
+			const dj=Object.fromEntries(formData)
+			console.log("json:",JSON.stringify(dj))
+			let output=""
+			for (const [key, value] of formData) {
+				output += `${key}: ${value}\n`;
+			}
+			console.log("form data:",output)
+		})
+	}
+</script>
+</html>

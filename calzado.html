@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calzado</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+	<div class="w3-row">
+	  <div class="w3-col m5 l4">
+		<div class="w3-container w3-padding">
+			<div class="w3-container w3-green">
+			  <h2>Calzado</h2>
+			</div>
+			<form id="frmCalzado" class="w3-container">
+			  <p>
+			  <label>ID Calzado</label>
+			  <input name="IDcalzado" class="w3-input" type="text" required></p>
+			  <p>
+			  <label>Marca</label>
+			  <input name="marca" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Talla</label>
+			  <input name="talla" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Color de calzado</label>
+			  <input name="color" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Tipo de calzado</label>
+			  <input name="tipo" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Existencia en almacén</label>
+			  <input name="Existencia" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Stock mínimo</label>
+			  <input name="StockMin" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Stock máximo</label>
+			  <input name="StockMax" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Costo de compra</label>
+			  <input name="CC" class="w3-input" type="text"></p>
+			  <p>
+			  <label>Costo de venta</label>
+			  <input name="CV" class="w3-input" type="text"></p>
+			  <p>
+				<input type="submit" id="btnEnviar" value="enviar">
+			  </p>
+			</form>
+		</div>
+	  </div>
+	  <div class="w3-col m7 l8">
+		<div class="w3-row w3-padding">
+			<div class="w3-bar w3-blue">
+			<a href="index.html" class="w3-bar-item w3-button">Inicio</a>
+			<a href="calzado.html" class="w3-bar-item w3-button">Calzado</a>
+			<a href="pedidos.html" class="w3-bar-item w3-button">Pedidos</a>
+			<a href="proveedores.html" class="w3-bar-item w3-button">Proveedores</a>
+		</div>
+		<div class="w3-row">
+			<div class="w3-container">
+			  <h2>Tabla</h2>
+			  <table class="w3-table w3-striped w3-bordered">
+				<thead>
+					<tr>
+					  <th>ID Calzado</th>
+					  <th>Marca</th>
+					  <th>Talla</th>
+					  <th>Color de calzado</th>
+					  <th>Tipo de calzado</th>
+					  <th>Existencia en almacén</th>
+					  <th>Stock mínimo</th>
+					  <th>Stock máximo</th>
+					  <th>Costo de compra</th>
+					  <th>Costo de venta</th>
+					</tr>
+				</thead>
+				<tbody id="tablaDatos">
+
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		
+	</div>
+	  </div>
+	</div>
+	
+
+</body>
+<script>
+	let todos=[
+		{
+			"IDcalzado": 1,
+			"Marca": "Flexi",
+			"Talla": 24,
+			"Color": "Café",
+			"Tipo": "Zapato",
+			"Existencia": 4,
+			"StockMin": 3,
+			"StockMax": 8,
+			"CC": "$450",
+			"CV": "$749"
+		},
+		{
+			"IDcalzado": 2,
+			"Marca": "Nike",
+			"Talla": 26,
+			"Color": "Blanco",
+			"Tipo": "Tenis deportivos",
+			"Existencia": 7,
+			"StockMin": 5,
+			"StockMax": 10,
+			"CC": "$1200",
+			"CV": "$1999"
+		},
+		{
+			"IDcalzado": 3,
+			"Marca": "Vans",
+			"Talla": 26,
+			"Color": "Negro",
+			"Tipo": "Tenis",
+			"Existencia": 5,
+			"StockMin": 5,
+			"StockMax": 12,
+			"CC": "$750",
+			"CV": "$1699"
+		}
+	]
+	function traeDatosTabla(){
+		return todos;
+	}
+	function cargaTabla(){
+		const tbody=document.querySelector("#tablaDatos")
+		let s=''
+		const datos=traeDatosTabla()
+		datos.forEach((value)=>{
+			s+=`<tr>
+					<td>${value.IDcalzado}</td>
+					<td>${value.Marca}</td>
+					<td>${value.Talla}</td>
+					<td>${value.Color}</td>
+					<td>${value.Tipo}</td>
+					<td>${value.Existencia}</td>
+					<td>${value.StockMin}</td>
+					<td>${value.StockMax}</td>
+					<td>${value.CC}</td>
+					<td>${value.CV}</td>
+				</tr>
+				`
+		})
+		tbody.innerHTML=s
+	}
+	window.onload=function(){
+		cargaTabla()
+
+		let btn=document.querySelector("#btnEnviar")
+		btn.addEventListener('click',function(e){
+			e.preventDefault
+			frm=document.querySelector("#frmPersona")
+			const formData=new FormData(frm)
+			console.log("for of")
+			console.log("for of")
+			let out2=""
+			for (let entry of formData) {
+				console.log(entry);
+			}
+			console.log("For in")
+			for (let i in formData) {
+				console.log(i); // logs "0", "1", "2", "foo"
+			}
+			console.log("for each")
+			formData.forEach((v,i)=>{
+				console.log(v)
+			})
+			//
+			formData.append("username", "Chris");
+			
+			//json
+			const dj=Object.fromEntries(formData)
+			console.log("json:",JSON.stringify(dj))
+			let output=""
+			for (const [key, value] of formData) {
+				output += `${key}: ${value}\n`;
+			}
+			console.log("form data:",output)
+		})
+	}
+</script>
+</html>
