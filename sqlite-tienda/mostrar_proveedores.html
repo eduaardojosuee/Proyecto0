@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROVEEDORES</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<div class="w3-bar w3-dark-gray">
+    <a href="index.html" class="w3-bar-item w3-button">INICIO</a>
+    <a href="mostrar_calzado.html" class="w3-bar-item w3-button">CALZADO</a>
+    <a href="mostrar_pedidos.html" class="w3-bar-item w3-button">PEDIDOS</a>
+    <a href="mostrar_proveedores.html" class="w3-bar-item w3-button">PROVEEDORES</a>
+  </div>
+<body>
+    <div class="w3-col 25 w3-padding">
+        <div class="w3-panel w3-red w3-padding-16">
+            PROVEEDORES
+        </div>
+        <div class="w3-bar w3-red">    
+            <a href="insertar_proveedores.html" target="_blank" class="w3-bar-item w3-button">AGREGAR</a>
+            <a href="modificar_proveedores.html" target="_blank" class="w3-bar-item w3-button">MODIFICAR</a>
+            <a href="eliminar_proveedor.html" target="_blank" class="w3-bar-item w3-button">ELIMINAR</a>
+          </div>
+        <table class="w3-table-all">
+            <thead>
+                <tr>
+                    <td>RFC PROVEEDOR</td>
+                    <td>NOMBRE PROVEEDOR</td>
+                    <td>TELEFONO PROVEEDOR</td>
+                    <td>DIRECCION PROVEEDOR</td>
+                    <td>EMAIL PROVEEDOR</td>
+                </tr>
+            </thead>
+            <tbody id="tbl_datos">
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<script>
+    window.onload=function(){
+        fetch('http://localhost/sqlite-tienda/php/leer-proveedores.php')
+        .then(response=>{
+            if(response.ok){
+                response.json()
+               .then(function (datosjson){
+                    datos=datosjson.slice(0,15)
+                    let s="";
+                    datos.forEach(element => {
+                        s+=`
+                            <tr>
+                            <td>${element.RFC_PROV}</td>
+                            <td>${element.NOMBRE_PROV}</td>
+                            <td>${element.TEL_PROV}</td>
+                            <td>${element.DIR_PROV}</td>
+                            <td>${element.EMAIL_PROV}</td>
+                            </tr>
+                        `;
+                    });
+                    document.querySelector("#tbl_datos").innerHTML=s;
+                });
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEDIDOS</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<div class="w3-bar w3-dark-gray">
+    <a href="index.html" class="w3-bar-item w3-button">INICIO</a>
+    <a href="mostrar_calzado.html" class="w3-bar-item w3-button">CALZADO</a>
+    <a href="mostrar_pedidos.html" class="w3-bar-item w3-button">PEDIDOS</a>
+    <a href="mostrar_proveedores.html" class="w3-bar-item w3-button">PROVEEDORES</a>
+  </div>
+<body>
+    <div class="w3-col 25 w3-padding">
+        <div class="w3-panel w3-blue w3-padding-16">
+            PEDIDOS
+        </div>
+        <div class="w3-bar w3-blue">
+            <a href="insertar_pedidos.html" target="_blank" class="w3-bar-item w3-button">AGREGAR</a>
+            <a href="modificar_pedidos.html" target="_blank" class="w3-bar-item w3-button">MODIFICAR</a>
+            <a href="eliminar_pedido.html" target="_blank" class="w3-bar-item w3-button">ELIMINAR</a>
+          </div>
+        <table class="w3-table-all w3-centered">
+            <thead>
+                <tr>
+                    <td>ID PEDIDO</td>
+                    <td>FECHA PEDIDO</td>
+                    <td>ID CALZADO</td>
+                    <td>RFC PROVEEDOR</td>
+                    <td>CANTIDAD SOLICITADA</td>
+                    <td>FECHA DE SURTIDO</td>
+                    <td>COSTO DE PEDIDO</td>
+                </tr>
+            </thead>
+            <tbody id="tbl_datos">
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<script>
+    window.onload=function(){
+        fetch('http://localhost/sqlite-tienda/php/leer-pedidos.php')
+        .then(response=>{
+            if(response.ok){
+                response.json()
+               .then(function (datosjson){
+                    datos=datosjson.slice(0,15)
+                    let s="";
+                    datos.forEach(element => {
+                        s+=`
+                            <tr>
+                            <td>${element.ID_PED}</td>
+                            <td>${element.FECHAPED_PED}</td>
+                            <td>${element.ID_CAL}</td>
+                            <td>${element.RFC_PROV}</td>
+                            <td>${element.CANT_PED}</td>
+                            <td>${element.FECHASURT_PED}</td>
+                            <td>${element.COSTO_PED}</td>
+                            </tr>
+                        `;
+                    });
+                    document.querySelector("#tbl_datos").innerHTML=s;
+                });
+            }
+        })
+    }
+</script>
+</html>

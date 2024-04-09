@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALZADO</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<div class="w3-bar w3-dark-gray">
+    <a href="index.html" class="w3-bar-item w3-button">INICIO</a>
+    <a href="mostrar_calzado.html" class="w3-bar-item w3-button">CALZADO</a>
+    <a href="mostrar_pedidos.html" class="w3-bar-item w3-button">PEDIDOS</a>
+    <a href="mostrar_proveedores.html" class="w3-bar-item w3-button">PROVEEDORES</a>
+  </div>
+<body>
+    <div class="w3-col 25 w3-padding">
+        <div class="w3-panel w3-teal w3-padding-16">
+            CALZADO
+        </div>
+        <div class="w3-bar w3-teal">
+            <a href="insertar_calzado.html" target="_blank" class="w3-bar-item w3-button">AGREGAR</a>
+            <a href="modificar_calzado.html" target="_blank" class="w3-bar-item w3-button">MODIFICAR</a>
+            <a href="eliminar_calzado.html" target="_blank" class="w3-bar-item w3-button">ELIMINAR</a>
+          </div>
+        <table class="w3-table-all w3-centered">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>MARCA</td>
+                    <td>TALLA</td>
+                    <td>COLOR</td>
+                    <td>TIPO</td>
+                    <td>EXISTENCIA EN ALMACÉN</td>
+                    <td>STOCK MÍNIMO</td>
+                    <td>STOCK MÁXIMO</td>
+                    <td>COSTO DE COMPRA</td>
+                    <td>COSTO DE VENTA</td>
+                </tr>
+            </thead>
+            <tbody id="tbl_datos">
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<script>
+    window.onload=function(){
+        fetch('http://localhost/sqlite-tienda/php/leer-calzado.php')
+        .then(response=>{
+            if(response.ok){
+                response.json()
+               .then(function (datosjson){
+                    datos=datosjson.slice(0,15)
+                    let s="";
+                    datos.forEach(element => {
+                        s+=`
+                            <tr>
+                            <td>${element.ID_CAL}</td>
+                            <td>${element.MARCA_CAL}</td>
+                            <td>${element.TALLA_CAL}</td>
+                            <td>${element.COLOR_CAL}</td>
+                            <td>${element.TIPO_CAL}</td>
+                            <td>${element.STOCK_CAL}</td>
+                            <td>${element.STOCKMIN_CAL}</td>
+                            <td>${element.STOCKMAX_CAL}</td>
+                            <td>${element.CC_CAL}</td>
+                            <td>${element.CV_CAL}</td>
+                            </tr>
+                        `;
+                    });
+                    document.querySelector("#tbl_datos").innerHTML=s;
+                });
+            }
+        })
+    }
+</script>
+</html>

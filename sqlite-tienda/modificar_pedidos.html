@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODIFICAR PEDIDOS</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<div class="w3-container w3-blue">
+  <h2>MODIFICAR PEDIDOS</h2>
+</div>
+
+<div class="w3-container">
+  <form class="w3-container" action="http://localhost/sqlite-tienda/php/modificar-pedido.php" method="post">
+    <label class="w3-text-blue"><b>ID PEDIDO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="ID" required>
+    <label class="w3-text-blue"><b>FECHA PEDIDO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="FECHAPED" required>
+    <label class="w3-text-blue"><b>ID CALZADO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="IDCAL" required>
+    <label class="w3-text-blue"><b>RFC PROVEEDOR:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="RFC" required>
+    <label class="w3-text-blue"><b>CANTIDAD SOLICITADA:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="CANT" required>
+    <label class="w3-text-blue"><b>FECHA DE SURTIDO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="FECHASURT" required>
+    <label class="w3-text-blue"><b>COSTO DE PEDIDO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="COSTO" required>
+    <button class="w3-btn w3-blue w3-margin-top">Enviar</button>
+  </form>
+</div>
+</body>
+</html>

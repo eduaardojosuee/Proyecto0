@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODIFICAR CALZADO</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+  <h2>MODIFICAR CALZADO</h2>
+</div>
+
+<div class="w3-container">
+  <form class="w3-container" action="http://localhost/sqlite-tienda/php/modificar-calzado.php" method="post">
+    <label class="w3-text-teal"><b>ID CALZADO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="ID" required>
+    <label class="w3-text-teal"><b>MARCA:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="MARCA" required>
+    <label class="w3-text-teal"><b>TALLA:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="TALLA" required>
+    <label class="w3-text-teal"><b>COLOR:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="COLOR" required>
+    <label class="w3-text-teal"><b>TIPO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="TIPO" required>
+    <label class="w3-text-teal"><b>EXISTENCIA EN ALMACEN:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="STOCK" required>
+    <label class="w3-text-teal"><b>STOCK MINIMO:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="STOCKMIN" required>
+    <label class="w3-text-teal"><b>STOCK MAX:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="STOCKMAX" required>
+    <label class="w3-text-teal"><b>COSTO DE COMPRA:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="CC" required>
+    <label class="w3-text-teal"><b>COSTO DE VENTA:</b></label>
+    <input class="w3-input w3-border w3-light-grey" type="text" name="CV" required>
+    <button class="w3-btn w3-teal w3-margin-top">Enviar</button>
+  </form>
+</div>
+
+</body>
+</html>
